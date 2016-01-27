@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page-header">
+  <h1>Facture: <%= @facture.id %></h1>
+</div>
+
+<div class="row">
+  <label class="col-sm-2" >Statut</label>
+  <p><%= @facture.status %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Client</label>
+  <p><%= @facture.set_dest %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">objet</label>
+  <p><%= @facture.objet %></p>
+</div>
+<br/><br/>
+<div class="col-sm-offset-2 col-sm-10">
+  <%= link_to 'Modifier', edit_contact_path(@facture), class:"btn btn-default btn-sm" %> 
+  <%= link_to 'Retour', factures_path, class:"btn btn-default btn-sm" %>
+
+</div>

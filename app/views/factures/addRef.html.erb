@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>Ajouter une référence</h1>
+</div>
+
+<%= render 'form1', fact_id: @facture.id %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+       <th>Reference</th>
+      <th>description</th>
+      <th>Prix Unitaire HT</th>
+      <th>TVA</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <% @facture.assignments.each do |assignment| %>
+      <%= ref = Ref.find(assignment.ref_id)%>
+      <tr>
+        <td><%= ref.id %></td>
+        <td><%= ref.name %></td>
+        <td><%= ref.desc %></td>
+        <td><%= ref.pu_ht %></td>
+        <td><%= ref.tva %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

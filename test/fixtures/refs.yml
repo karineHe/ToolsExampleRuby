@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  desc: MyText
+  pu_ht: 1.5
+  tva: 1.5
+
+two:
+  name: MyString
+  desc: MyText
+  pu_ht: 1.5
+  tva: 1.5

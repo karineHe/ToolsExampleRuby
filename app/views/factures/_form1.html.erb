@@ -1,0 +1,24 @@
+<%= form_for(@assignment) do |f| %>
+  <% if @assignement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this facture from being saved:</h2>
+
+      <ul>
+        <% @assignment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<p> Choisissez une référence </p>
+<%= f.select :ref_name, Ref.all.collect {|r| r.name}, class:"form-control", include_blank: true  %>
+
+<%= @assignment.ref_id = Ref.where(name: :ref_name) %>
+<%= @assignment.facture_id = fact.id %>
+
+<%= f.submit "Suivant", class:"pager" %>
+<%= link_to "Précédent", class:"pager" %>
+
+<% end %>
+

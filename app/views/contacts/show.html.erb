@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page-header">
+  <h1>Contact: <%= @contact.lname+" "+@contact.fname %></h1>
+</div>
+
+<div class="row">
+  <label class="col-sm-2" >Civilité</label>
+  <p><%= @contact.civ %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Nom</label>
+  <p><%= @contact.lname %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Prénom</label>
+  <p><%= @contact.fname %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Entreprise</label>
+  <p><%= @contact.show_comp %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Fonction</label>
+  <p><%= @contact.job %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Adresse</label>
+  <p><%= @contact.address %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Email</label>
+  <p><%= @contact.email %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Téléphone</label>
+  <%= @contact.phone %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Mobile</label>
+  <p><%= @contact.cell %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Fax</label>
+  <p><%= @contact.fax %></p>
+</div>
+
+<div class="col-sm-offset-2 col-sm-10">
+  <%= link_to 'Modifier', edit_contact_path(@contact), class:"btn btn-default btn-sm" %> 
+  <%= link_to 'Retour', contacts_path, class:"btn btn-default btn-sm" %>
+
+</div>
