@@ -12,15 +12,16 @@ class Facture < ActiveRecord::Base
     if self.company
       return self.company.name
     else
-      return "#{self.contact.lname} #{self.contact.fname}"
+      if self.contact
+        return "#{self.contact.lname} #{self.contact.fname}"
+      else
+        return ""
+      end
     end
   end
 
   def comp_empty?
-    if self.comp_name
-      false
-    end
-    true
+    !(self.comp_name)
   end
 
   def contact_empty?

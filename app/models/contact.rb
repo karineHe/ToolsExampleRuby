@@ -8,7 +8,7 @@ class Contact < ActiveRecord::Base
     if (self.phone == nil) && (self.cell == nil)
       return ""
     else
-      if !(self.phone.empty?)
+      if self.phone
         self.phone
       else
         self.cell
@@ -20,7 +20,7 @@ class Contact < ActiveRecord::Base
     if self.company == nil
       return "#####"
     else
-      c = Company.find(self.company)
+      c = Company.find(self.company.id)
       c.name
     end
   end

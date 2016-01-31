@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :factures
 
   get 'factures/:id/view' => 'factures#createPDF'
+  get 'factures/:id/addRef' => 'factures#addRef', as: "addRef"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

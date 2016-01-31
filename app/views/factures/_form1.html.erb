@@ -11,14 +11,13 @@
     </div>
   <% end %>
 
-<p> Choisissez une référence </p>
 <%= f.select :ref_name, Ref.all.collect {|r| r.name}, class:"form-control", include_blank: true  %>
 
-<%= @assignment.ref_id = Ref.where(name: :ref_name) %>
-<%= @assignment.facture_id = fact.id %>
-
-<%= f.submit "Suivant", class:"pager" %>
-<%= link_to "Précédent", class:"pager" %>
-
+<div class="actions">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Ajouter", class:"btn btn-primary btn-sm" %> 
+      <%= link_to 'Annuler', "factures#addRef" , class:"btn btn-default btn-sm"%>
+    </div>
+  </div>
 <% end %>
 

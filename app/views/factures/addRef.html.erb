@@ -1,8 +1,24 @@
 <div class="page-header">
-  <h1>Ajouter une référence</h1>
+  <h1>Facture: <%= @facture.id %></h1>
 </div>
 
-<%= render 'form1', fact_id: @facture.id %>
+<div class="row">
+  <label class="col-sm-2" >Statut</label>
+  <p><%= @facture.status %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">Client</label>
+  <p><%= @facture.set_dest %></p>
+</div>
+
+<div class="row">
+  <label class="col-sm-2">objet</label>
+  <p><%= @facture.objet %></p>
+</div>
+<br/><br/>
+
+  <h1>Références</h1>
 
 <table class="table">
   <thead>
@@ -14,17 +30,8 @@
       <th>TVA</th>
     </tr>
   </thead>
-
   <tbody>
-      <% @facture.assignments.each do |assignment| %>
-      <%= ref = Ref.find(assignment.ref_id)%>
-      <tr>
-        <td><%= ref.id %></td>
-        <td><%= ref.name %></td>
-        <td><%= ref.desc %></td>
-        <td><%= ref.pu_ht %></td>
-        <td><%= ref.tva %></td>
-      </tr>
-      <% end %>
   </tbody>
 </table>
+</br></br>
+  <%= render 'form1' %>

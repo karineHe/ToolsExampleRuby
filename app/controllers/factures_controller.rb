@@ -1,5 +1,5 @@
 class FacturesController < ApplicationController
-  before_action :set_facture, only: [:show, :edit, :update, :destroy, :createPDF]
+  before_action :set_facture, only: [:show, :edit, :update, :destroy, :createPDF, :addRef]
 
   # GET /factures
   # GET /factures.json
@@ -41,7 +41,7 @@ class FacturesController < ApplicationController
 
     respond_to do |format|
       if @facture.save
-        format.html { render :addRef }
+        format.html { redirect_to addRef_path(@facture) }
         format.json { render :show, status: :created, location: @facture }
       else
         format.html { render :new }

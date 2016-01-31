@@ -39,11 +39,15 @@
       </div>
     </div>
   </div><br/><br/>
-  <div class="col-md-offset-3 col-md-12">
-  <div class="actions">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit "Suivant", class:"pager" %>
-      <%= link_to 'Annuler', factures_path , class:"btn btn-default btn-sm"%>
-    </div>
-  </div>
-<% end %>
+   <div class="actions">
+      <div class="col-md-offset-3 col-md-8">
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <%= f.submit "Enregistrer", class:"btn btn-primary btn-md" %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= link_to 'Retour', factures_path , class:"btn btn-default btn-md"%>
+          </div>
+        </div>
+      </div>
+    </div><% end %>
