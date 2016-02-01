@@ -4,53 +4,56 @@
       <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
 
       <ul>
-      <% @contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @contact.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :Civilité, class:"col-sm-2" %>
-    <%= f.select :civ, ['M.', 'Mme', 'Melle']%>
-  </div><br/>
-  <div class="field">
-    <%= f.label :Nom, class:"col-sm-2" %>
-    <%= f.text_field :lname, placeholder:"Nom", class:"col-md-4" %>
-  </div><br/>
-  <div class="field">
-    <%= f.label :Prénom, class:"col-sm-2" %>
-    <%= f.text_field :fname, placeholder:"Prénom", class:"col-md-4"  %>
-  </div><br/>
-  <div class="field">
-    <%= f.label :Fonction, class:"col-sm-2" %>
-    <%= f.text_field :job, placeholder:"Fonction", class:"col-md-4"  %>
-  </div><br/>
-  <div class="field">
-    <%= f.label :Adresse, class:"col-sm-2" %>
-    <%= f.text_area :address, placeholder:"Adresse", class:"col-md-4"  %>
-  </div><br/><br/>
-  <div class="field">
-    <%= f.label :Email, class:"col-sm-2"  %>
-    <%= f.text_field :email, placeholder:"Email", class:"col-sm-4"  %>
-  </div><br/>
-  <div class="field">
-    <%= f.label :Tél, class:"col-sm-2"  %>
-    <%= f.text_field :phone, placeholder:"Téléphone", class:"col-md-4"  %>
-  </div><br/>
-  <div class="field">
-    <%= f.label :Mobile, class:"col-sm-2"  %>
-    <%= f.text_field :cell, placeholder:"Mobile", class:"col-md-4"  %>
-  </div><br/>
-  <div class="field">
-    <%= f.label :Fax, class:"col-sm-2"  %>
-    <%= f.text_field :fax, placeholder:"Fax", class:"col-md-4"   %>
-  </div><br/></br>
-  <div class="actions">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit "Enregistrer", class:"btn btn-primary btn-sm" %> 
-      <%= link_to 'Retour', contacts_path , class:"btn btn-default btn-sm"%>
+  <div class="jumbotron">
+    <div class="field">
+      <%= f.label :Civilité, class:"col-sm-2" %>
+      <%= f.select :civ, ['M.', 'Mme', 'Melle']%>
+    </div><br/>
+    <div class="field">
+      <%= f.label :Nom, class:"col-sm-2" %>
+      <%= f.text_field :lname, placeholder:"Nom", class:"col-md-4" %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :Prénom, class:"col-sm-2" %>
+      <%= f.text_field :fname, placeholder:"Prénom", class:"col-md-4"  %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :Fonction, class:"col-sm-2" %>
+      <%= f.text_field :job, placeholder:"Fonction", class:"col-md-4"  %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :Adresse, class:"col-sm-2" %>
+      <%= f.text_area :address, placeholder:"Adresse", class:"col-md-4"  %>
+    </div><br/><br/>
+    <div class="field">
+      <%= f.label :Email, class:"col-sm-2"  %>
+      <%= f.text_field :email, placeholder:"Email", class:"col-sm-4"  %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :Tél, class:"col-sm-2"  %>
+      <%= f.text_field :phone, placeholder:"Téléphone", class:"col-md-4"  %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :Mobile, class:"col-sm-2"  %>
+      <%= f.text_field :cell, placeholder:"Mobile", class:"col-md-4"  %>
+    </div><br/>
+    <div class="field">
+      <%= f.label :Fax, class:"col-sm-2"  %>
+      <%= f.text_field :fax, placeholder:"Fax", class:"col-md-4"   %>
+    </div><br/></br>
+    <div class="actions">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Enregistrer", class:"btn btn-primary btn-sm" %> 
+        <%= link_to 'Retour', contacts_path , class:"btn btn-default btn-sm"%>
+      </div>
     </div>
   </div>
-<% end %>
+    </br>
+  <% end %>

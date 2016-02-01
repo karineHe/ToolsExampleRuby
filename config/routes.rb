@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   resources :contacts
   resources :companies
   resources :customers
-  resources :factures
 
-  get 'factures/:id/view' => 'factures#createPDF'
-  get 'factures/:id/addRef' => 'factures#addRef', as: "addRef"
+  get 'factures/:id/view' => 'factures#create_pdf', as: "create_pdf"
+  get 'factures/:id/add_ref' => 'factures#add_ref', as: "add_ref"
+  post 'factures/:id/set_ref' => 'factures#set_ref', as: "set_ref"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

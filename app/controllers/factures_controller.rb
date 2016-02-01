@@ -1,5 +1,5 @@
 class FacturesController < ApplicationController
-  before_action :set_facture, only: [:show, :edit, :update, :destroy, :createPDF, :addRef]
+  before_action :set_facture, only: [:show, :edit, :update, :destroy, :create_pdf, :add_ref, :set_ref]
 
   # GET /factures
   # GET /factures.json
@@ -7,7 +7,7 @@ class FacturesController < ApplicationController
     @factures = Facture.all
   end
 
-  def createPDF
+  def create_pdf
     respond_to do |format|
       format.pdf do
         pdf = GeneratePdf.new(@facture)
@@ -30,8 +30,23 @@ class FacturesController < ApplicationController
   def edit
   end
 
-  def addRef
+  def add_ref
     @assignment = Assignment.new
+  end
+
+  def set_ref
+    @assignment = Assignment.new(assignment_params)
+    @assignment.facture = @facture
+
+    respond_to do |format|
+      if (@assignment.ref_id != nil) && (@assignment.save)
+        format.html { redirect_to add_ref_path(@facture) }
+        format.json { render :show, status: :created, location: @facture }
+      else
+        format.html { redirect_to add_ref_path(@facture) }
+        format.json { render json: @assignment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /factures
@@ -41,7 +56,7 @@ class FacturesController < ApplicationController
 
     respond_to do |format|
       if @facture.save
-        format.html { redirect_to addRef_path(@facture) }
+        format.html { redirect_to add_ref_path(@facture) }
         format.json { render :show, status: :created, location: @facture }
       else
         format.html { render :new }
@@ -83,5 +98,10 @@ class FacturesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def facture_params
       params.require(:facture).permit(:comp_name, :lname, :objet, :emetteur)
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def assignment_params
+      params.require(:assignment).permit(:ref_id)
     end
 end

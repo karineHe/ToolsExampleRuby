@@ -11,35 +11,27 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-6">
-      <h3>Emetteur</h3><br/>
-      <div class="row">
-        <%= f.label :Contact, class:"col-md-3" %>
-        <%= f.text_area :emetteur, class:"col-md-6" %>
-      </div>
-      <h3>Objet</h3></br>
-      <div class="row">
-        <%= f.label :intitulé, class:"col-md-3" %>
-        <%= f.text_field :objet, class:"col-md-6" %>
-      </div>
-      <br/></br>
+  <div class="jumbotron">
+    <div class="row">
+      <%= f.label :Emetteur, class:"col-md-3" %>
+      <%= f.text_area :emetteur, class:"col-md-3" %>
     </div>
-    <div class="col-md-6">
-      <h3>Destinataire</h3></br>
-      <h4>Dans le cas d'une société</h4>
-      <div class="row">
-        <%= f.label :Société, class:"col-md-2" %>
-        <%= f.select :comp_name, Company.all.collect {|c| c.name}, class:"form-control", include_blank: true %>
-      </div><br/>
-      <h4>Dans le cas d'un particulier</h4>
-      <div class="row">
-        <%= f.label :Nom, class:"col-md-2" %>
-        <%= f.select :lname, Contact.all.collect {|c| "#{c.lname} #{c.fname}"}, class:"form-control", include_blank: true %>
-      </div>
+    <div class="row">
+      <%= f.label :Objet, class:"col-md-3" %>
+      <%= f.text_field :objet, class:"col-md-3" %>
     </div>
-  </div><br/><br/>
-   <div class="actions">
+    <h4>Destinataire</h4>
+    <div class="row">
+      <%= f.label :Société, class:"col-md-3" %>
+      <%= f.select :comp_name, Company.all.collect {|c| c.name}, include_blank: true %>
+    </div>
+    <u><strong>ou bien</strong></u>
+    <div class="row">
+      <%= f.label :Particulier, class:"col-md-3" %>
+      <%= f.select :lname, Contact.all.collect {|c| "#{c.lname} #{c.fname}"}, include_blank: true %>
+    </div>
+    <br/><br/>
+    <div class="actions">
       <div class="col-md-offset-3 col-md-8">
         <div class="btn-group btn-group-justified" role="group">
           <div class="btn-group" role="group">
@@ -50,4 +42,6 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
     </div><% end %>

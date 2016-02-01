@@ -1,72 +1,79 @@
 <p id="notice"><%= notice %></p>
 
 <div class="page-header">
+  <h1>Factures: Tableau récapitulatif</h1>
+</div>
+
+<div class="jumbotron">
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Montant HT</th>
+        <th>Montants total TTC</th>
+        <th>Totaux TVA</th>
+        <th>Montants restant dus</th>
+        <th>Montants payés TTC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</br>
+<div class="page-header">
   <h1>Liste des Factures</h1>
 </div>
 
+<div class="jumbotron">
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Montant HT</th>
-      <th>Montants total TTC</th>
-      <th>Totaux TVA</th>
-      <th>Montants restant dus</th>
-      <th>Montants payés TTC</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+  <%= link_to 'Nouvelle Facture', new_facture_path, class:"btn btn-primary btn-md" %>
+  </br></br>
 
-<%= link_to 'Nouvelle Facture', new_facture_path, class:"btn btn-default" %>
-</br></br>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Statut</th>
-      <th>Client</th>
-      <th>Objet</th>
-      <th>Emission</th>
-      <th>Date limite</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @factures.each do |facture| %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= facture.status %></td>
-        <td><%= facture.set_dest %></td>
-        <td><%= facture.objet %></td>
-        <td><%= facture.created_at.strftime("%d %b %Y") %></td>
-        <td><%= (facture.created_at + 30.days).strftime("%d %b %Y")%></td>
-        <td>
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Plus
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><%= link_to 'Voir', facture %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to 'Modifier', edit_facture_path(facture) %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to 'Supprimer', facture, method: :delete, data: { confirm: 'Etes-vous ŝur?' } %></li>
-            </ul>
-          </div>
-        </td>
+        <th>Statut</th>
+        <th>Client</th>
+        <th>Objet</th>
+        <th>Emission</th>
+        <th>Date limite</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @factures.each do |facture| %>
+        <tr>
+          <td><%= facture.status %></td>
+          <td><%= facture.set_dest %></td>
+          <td><%= facture.objet %></td>
+          <td><%= facture.created_at.strftime("%d %b %Y") %></td>
+          <td><%= (facture.created_at + 30.days).strftime("%d %b %Y")%></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Plus
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><%= link_to 'Voir détails', add_ref_path(facture) %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to 'Supprimer', facture, method: :delete, data: { confirm: 'Etes-vous ŝur?' } %></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>
+
 

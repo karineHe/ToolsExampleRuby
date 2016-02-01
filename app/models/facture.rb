@@ -20,6 +20,16 @@ class Facture < ActiveRecord::Base
     end
   end
 
+  def ref_array
+    refs = []
+      self.assignments.each do |a|
+        if a.ref_id != nil
+          refs << Ref.find(a.ref_id)
+        end
+      end
+    refs
+  end
+
   def comp_empty?
     !(self.comp_name)
   end

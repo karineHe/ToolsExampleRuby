@@ -1,51 +1,54 @@
 <p id="notice"><%= notice %></p>
 
 <div class="page-header">
-  <h1>Liste de Contacts</h1>
+  <h1>Liste des Contacts</h1>
 </div>
 
-<%= link_to 'Nouveau Contact', new_contact_path, class: "btn btn-default" %>
-<br><br>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>Nom</th>
-      <th>Prénom</th>
-      <th>Email</th>
-      <th>Téléphone</th>
-      <th>Entreprise</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @contacts.each do |contact| %>
+<div class="jumbotron">
+  <%= link_to 'Nouveau Contact', new_contact_path, class: "btn btn-primary" %>
+  <br><br>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= contact.id %></td>
-        <td><%= contact.lname %></td>
-        <td><%= contact.fname %></td>
-        <td><%= contact.email %></td>
-        <td><%= contact.show_phone %></td>
-        <td><%= contact.show_comp %></td>
-        <td>
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Plus
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><%= link_to 'Voir', contact %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to 'Modifier', edit_contact_path(contact) %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to 'Supprimer', contact, method: :delete, data: { confirm: 'Etes-vous ŝur?' } %></li>
-            </ul>
-          </div>
-        </td>
+        <th>id</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Entreprise</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @contacts.each do |contact| %>
+        <tr>
+          <td><%= contact.id %></td>
+          <td><%= contact.lname %></td>
+          <td><%= contact.fname %></td>
+          <td><%= contact.email %></td>
+          <td><%= contact.show_phone %></td>
+          <td><%= contact.show_comp %></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Plus
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><%= link_to 'Voir', contact %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to 'Modifier', edit_contact_path(contact) %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to 'Supprimer', contact, method: :delete, data: { confirm: 'Etes-vous ŝur?' } %></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
 
 <br>
 

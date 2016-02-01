@@ -1,29 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
+<div class="page-header">
+  <h1>Fiche Entreprise: <%= @company.name %></h1>
+</div>
 
-<p>
-  <strong>Website:</strong>
+<div class="jumbotron">
+<div class="row">
+  <label class="col-sm-2" >Site Web<label>
   <%= @company.website %>
-</p>
+</div>
 
-<p>
-  <strong>Phone:</strong>
+<div class="row">
+  <label class="col-sm-2" >Téléphone</label>
   <%= @company.phone %>
-</p>
+</div>
 
-<p>
-  <strong>Fax:</strong>
+<div class="row">
+  <label class="col-sm-2" >Fax</label>
   <%= @company.fax %>
-</p>
+</div>
 
-<p>
-  <strong>Email:</strong>
+<div class="row">
+  <label class="col-sm-2" >E-mail</label>
   <%= @company.email %>
-</p>
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+</div>
+</br></br>
+<div class="col-sm-offset-2 col-sm-10">
+  <%= link_to 'Modifier', edit_company_path(@company), class:"btn btn-default btn-md" %> 
+  <%= link_to 'Retour', companies_path, class:"btn btn-default btn-md" %>
+</div>
+</div>

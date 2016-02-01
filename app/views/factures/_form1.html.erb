@@ -1,5 +1,5 @@
-<%= form_for(@assignment) do |f| %>
-  <% if @assignement.errors.any? %>
+<%= form_for(@assignment, url: set_ref_path(@facture, @assignment), html: { method: :post }) do |f| %>
+  <% if @assignment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this facture from being saved:</h2>
 
@@ -11,13 +11,12 @@
     </div>
   <% end %>
 
-<%= f.select :ref_name, Ref.all.collect {|r| r.name}, class:"form-control", include_blank: true  %>
-
-<div class="actions">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit "Ajouter", class:"btn btn-primary btn-sm" %> 
-      <%= link_to 'Annuler', "factures#addRef" , class:"btn btn-default btn-sm"%>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-10">
+      <%= f.select :ref_id, options_for_select(Ref.all.map{|r|["#{r.name}/#{r.desc}", r.id]}), include_blank: true %>
+      <%= f.submit "Ajouter", class:"btn btn-primary btn-sm" %>
     </div>
-  </div>
+  </div
+
 <% end %>
 
