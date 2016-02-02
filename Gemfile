@@ -47,6 +47,7 @@ gem "twitter-bootstrap-rails"
 
 # Generate pdf
 gem 'prawn'
+gem 'prawn-table'
 
 gem 'simple_form'
 

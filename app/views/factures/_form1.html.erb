@@ -12,8 +12,11 @@
   <% end %>
 
   <div class="row">
-    <div class="col-sm-offset-1 col-sm-10">
+    <div class="col-md-10">
+      <%= f.label :Référence %>
       <%= f.select :ref_id, options_for_select(Ref.all.map{|r|["#{r.name}/#{r.desc}", r.id]}), include_blank: true %>
+      <%= f.label :Quantité %>
+      <%= f.number_field :qty, min: 1, value: 1 %>
       <%= f.submit "Ajouter", class:"btn btn-primary btn-sm" %>
     </div>
   </div

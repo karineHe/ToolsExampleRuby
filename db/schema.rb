@@ -11,15 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120153221) do
+ActiveRecord::Schema.define(version: 20160202103721) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "facture_id"
     t.integer "ref_id"
+    t.integer "qty"
   end
-
-  add_index "assignments", ["facture_id"], name: "index_assignments_on_facture_id"
-  add_index "assignments", ["ref_id"], name: "index_assignments_on_ref_id"
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"

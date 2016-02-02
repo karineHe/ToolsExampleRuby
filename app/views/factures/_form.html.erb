@@ -4,44 +4,36 @@
       <h2><%= pluralize(@facture.errors.count, "error") %> prohibited this facture from being saved:</h2>
 
       <ul>
-      <% @facture.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @facture.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="jumbotron">
-    <div class="row">
-      <%= f.label :Emetteur, class:"col-md-3" %>
-      <%= f.text_area :emetteur, class:"col-md-3" %>
-    </div>
-    <div class="row">
-      <%= f.label :Objet, class:"col-md-3" %>
-      <%= f.text_field :objet, class:"col-md-3" %>
-    </div>
-    <h4>Destinataire</h4>
-    <div class="row">
-      <%= f.label :Société, class:"col-md-3" %>
-      <%= f.select :comp_name, Company.all.collect {|c| c.name}, include_blank: true %>
-    </div>
-    <u><strong>ou bien</strong></u>
-    <div class="row">
-      <%= f.label :Particulier, class:"col-md-3" %>
-      <%= f.select :lname, Contact.all.collect {|c| "#{c.lname} #{c.fname}"}, include_blank: true %>
-    </div>
-    <br/><br/>
-    <div class="actions">
-      <div class="col-md-offset-3 col-md-8">
-        <div class="btn-group btn-group-justified" role="group">
-          <div class="btn-group" role="group">
-            <%= f.submit "Enregistrer", class:"btn btn-primary btn-md" %>
-          </div>
-          <div class="btn-group" role="group">
-            <%= link_to 'Retour', factures_path , class:"btn btn-default btn-md"%>
-          </div>
-        </div>
-      </div>
+  <h4>Emetteur</h4>
+  <div class="row">
+    <%= f.label :"Contact dans l'entreprise", class:"col-md-3" %>
+    <%= f.text_field :emetteur, class:"col-md-3" %>
+  </div>
+  <div class="row">
+    <%= f.label :Objet, class:"col-md-3" %>
+    <%= f.text_field :objet, class:"col-md-3" %>
+  </div>
+  <h4>Destinataire</h4>
+  <div class="row">
+    <%= f.label :Société, class:"col-md-3" %>
+    <%= f.select :comp_name, Company.all.collect {|c| c.name}, include_blank: true %>
+  </div>
+  <u><strong>ou bien</strong></u></br>
+  <div class="row">
+    <%= f.label :Particulier, class:"col-md-3" %>
+    <%= f.select :lname, Contact.all.collect {|c| "#{c.lname} #{c.fname}"}, include_blank: true %>
+  </div>
+  <br/><br/>
+  <div class="actions">
+    <div class="col-md-offset-3 col-md-8">
+        <%= f.submit "Enregistrer", class:"btn btn-primary btn-md" %>
     </div>
   </div>
-    </div><% end %>
+<% end %>

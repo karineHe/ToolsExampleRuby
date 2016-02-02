@@ -1,5 +1,5 @@
 class FacturesController < ApplicationController
-  before_action :set_facture, only: [:show, :edit, :update, :destroy, :create_pdf, :add_ref, :set_ref]
+  before_action :set_facture, only: [:show, :edit, :update, :destroy, :create_pdf, :add_ref, :set_ref, :update_status]
 
   # GET /factures
   # GET /factures.json
@@ -39,9 +39,9 @@ class FacturesController < ApplicationController
     @assignment.facture = @facture
 
     respond_to do |format|
-      if (@assignment.ref_id != nil) && (@assignment.save)
+      if @assignment.save
         format.html { redirect_to add_ref_path(@facture) }
-        format.json { render :show, status: :created, location: @facture }
+        format.json { render :add_ref, status: :created, location: @facture }
       else
         format.html { redirect_to add_ref_path(@facture) }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
@@ -56,8 +56,8 @@ class FacturesController < ApplicationController
 
     respond_to do |format|
       if @facture.save
-        format.html { redirect_to add_ref_path(@facture) }
-        format.json { render :show, status: :created, location: @facture }
+        format.html { redirect_to add_ref_path(@facture), notice: 'La facture a bien été créée.'} 
+        format.json { render :add_ref, status: :created, location: @facture }
       else
         format.html { render :new }
         format.json { render json: @facture.errors, status: :unprocessable_entity }
@@ -65,12 +65,24 @@ class FacturesController < ApplicationController
     end
   end
 
+  def update_status
+    @facture.change_status
+     respond_to do |format|
+      if @facture.save
+        format.html { redirect_to factures_url}
+        format.json { render :show, status: :ok, location: @facture }
+      else
+        format.html { render :edit }
+        format.json { render json: @facture.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # PATCH/PUT /factures/1
   # PATCH/PUT /factures/1.json
   def update
     respond_to do |format|
       if @facture.update(facture_params)
-        format.html { redirect_to @facture, notice: 'Facture was successfully updated.' }
+        format.html { redirect_to add_ref_path(@facture), notice: 'La facture a bien été mise à jour.' }
         format.json { render :show, status: :ok, location: @facture }
       else
         format.html { render :edit }
@@ -84,7 +96,7 @@ class FacturesController < ApplicationController
   def destroy
     @facture.destroy
     respond_to do |format|
-      format.html { redirect_to factures_url, notice: 'Facture was successfully destroyed.' }
+      format.html { redirect_to factures_url, notice: 'La facture a bien été supprimée.' }
       format.json { head :no_content }
     end
   end
@@ -102,6 +114,6 @@ class FacturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assignment_params
-      params.require(:assignment).permit(:ref_id)
+      params.require(:assignment).permit(:ref_id, :qty)
     end
 end

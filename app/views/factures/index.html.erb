@@ -41,6 +41,7 @@
     <thead>
       <tr>
         <th>Statut</th>
+        <th>Numéro</th>
         <th>Client</th>
         <th>Objet</th>
         <th>Emission</th>
@@ -53,6 +54,7 @@
       <% @factures.each do |facture| %>
         <tr>
           <td><%= facture.status %></td>
+          <td><%= facture.id %></td>
           <td><%= facture.set_dest %></td>
           <td><%= facture.objet %></td>
           <td><%= facture.created_at.strftime("%d %b %Y") %></td>
@@ -64,6 +66,8 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><%= link_to 'Voir détails', add_ref_path(facture) %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to 'Marquer Payée', update_status_path(facture) %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to 'Supprimer', facture, method: :delete, data: { confirm: 'Etes-vous ŝur?' } %></li>
               </ul>

@@ -45,24 +45,26 @@
       <th>description</th>
       <th>Prix Unitaire HT</th>
       <th>TVA</th>
+      <th>Quantité</th>
       <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     <% @facture.ref_array.each do |ref| %>
       <tr>
-        <td><%= ref.id %></td>
-        <td><%= ref.name %></td>
-        <td><%= ref.desc %></td>
-        <td><%= ref.pu_ht %></td>
-        <td><%= ref.tva %></td>
+        <td><%= ref[0].id %></td>
+        <td><%= ref[0].name %></td>
+        <td><%= ref[0].desc %></td>
+        <td><%= ref[0].pu_ht %></td>
+        <td><%= ref[0].tva %></td>
+        <td><%= ref[1] %></td>
         <td>
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Plus
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><%= link_to 'Voir', ref %></li>
+              <li><%= link_to 'Voir', ref[0] %></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to 'Supprimer' %></li>
             </ul>
@@ -74,6 +76,6 @@
 </table>
 </br></br></br>
 <div class="action">
-  <%= link_to "Générer PDF", create_pdf_path(@facture, format: 'pdf') , class:"btn btn-primary btn-lg" %>
+  <%= link_to "Générer PDF", create_pdf_path(@facture, format: 'pdf') , :target => "_blank",  class:"btn btn-primary btn-lg active" %>
 </div>
 </div>

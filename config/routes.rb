@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   resources :dashboards
   resources :contacts
   resources :companies
-  resources :customers
 
   get 'factures/:id/view' => 'factures#create_pdf', as: "create_pdf"
   get 'factures/:id/add_ref' => 'factures#add_ref', as: "add_ref"
   post 'factures/:id/set_ref' => 'factures#set_ref', as: "set_ref"
+  get 'factures/:id/update_status' => 'factures#update_status', as: "update_status"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

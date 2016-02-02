@@ -1,5 +1,5 @@
 class Facture < ActiveRecord::Base
-  has_many :assignments
+  has_many :assignments, dependent: :destroy
   has_many :refs, through: :assignments
   belongs_to :company
   belongs_to :contact
@@ -14,8 +14,16 @@ class Facture < ActiveRecord::Base
     else
       if self.contact
         return "#{self.contact.lname} #{self.contact.fname}"
-      else
-        return ""
+      end
+    end
+  end
+
+  def get_client_addr
+    if self.company
+      self.company.address
+    else
+      if self.contact
+        self.contact.address
       end
     end
   end
@@ -24,7 +32,7 @@ class Facture < ActiveRecord::Base
     refs = []
       self.assignments.each do |a|
         if a.ref_id != nil
-          refs << Ref.find(a.ref_id)
+          refs << [Ref.find(a.ref_id), a.qty]
         end
       end
     refs
@@ -39,6 +47,10 @@ class Facture < ActiveRecord::Base
       false
     end
     true
+  end
+
+  def change_status
+    self.status = "Payée"
   end
 
   def sum_m_HT
