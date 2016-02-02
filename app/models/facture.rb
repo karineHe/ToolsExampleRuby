@@ -6,6 +6,14 @@ class Facture < ActiveRecord::Base
 
   before_save :set_p
 
+  # validate :has_one_to_be_nil
+
+  # def has_one_to_be_nil
+  #   if !(self.comp_name.empty?) && !(self.lname.empty?)
+  #     errors.add(:base, "you have to choose one")
+  #   end
+  # end
+
   attr_accessor :comp_name, :lname
 
   def set_dest
@@ -50,7 +58,7 @@ class Facture < ActiveRecord::Base
   end
 
   def change_status
-    self.status = "Payée"
+    self.status = "Payee"
   end
 
   def sum_m_HT
@@ -79,7 +87,7 @@ class Facture < ActiveRecord::Base
       contact = Contact.where(lname: self.lname).limit(1)
       self.contact = contact[0]
     end
-    self.status = "A payer"
+    self.status ||= "A payer"
   end
 
 end

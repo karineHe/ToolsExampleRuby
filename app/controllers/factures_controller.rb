@@ -67,7 +67,7 @@ class FacturesController < ApplicationController
 
   def update_status
     @facture.change_status
-     respond_to do |format|
+    respond_to do |format|
       if @facture.save
         format.html { redirect_to factures_url}
         format.json { render :show, status: :ok, location: @facture }
