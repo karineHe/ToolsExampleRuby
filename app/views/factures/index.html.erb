@@ -8,8 +8,8 @@
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th>Montant HT</th>
-        <th>Montants total TTC</th>
+        <th>Montant total HT</th>
+        <th>Montant total TTC</th>
         <th>Totaux TVA</th>
         <th>Montants restant dus</th>
         <th>Montants payés TTC</th>
@@ -17,11 +17,11 @@
     </thead>
     <tbody>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= Facture.sum_total_ht %></td>
+        <td><%= Facture.sum_total_ttc %></td>
+        <td><%= Facture.sum_total_ttc - Facture.sum_total_ht %></td>
+        <td><%= Facture.m_unpaid %></td>
+        <td><%= Facture.m_paid %></td>
       </tr>
     </tbody>
   </table>

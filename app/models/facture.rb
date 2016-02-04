@@ -6,9 +6,9 @@ class Facture < ActiveRecord::Base
 
   before_save :set_p
 
-  # validate :has_one_to_be_nil
+  # validate :one_has_to_be_nil
 
-  # def has_one_to_be_nil
+  # def one_has_to_be_nil
   #   if !(self.comp_name.empty?) && !(self.lname.empty?)
   #     errors.add(:base, "you have to choose one")
   #   end
@@ -51,29 +51,49 @@ class Facture < ActiveRecord::Base
   end
 
   def contact_empty?
-    if self.lname
-      false
-    end
-    true
+    !(self.lname)
   end
 
   def change_status
     self.status = "Payee"
   end
 
-  def sum_m_HT
+  def sum_mt_ht
+    0 if self.assignments.empty?
+    self.assignments.map{|a| Ref.find(a.ref_id).pu_ht * a.qty}.sum
   end
 
-  def sum_tot_TTC
+  def sum_mt_ttc
+    0 if self.assignments.empty?
+    self.assignments.map{|a| Ref.find(a.ref_id).total_ttc(a.qty)}.sum
   end
 
-  def tot_TVA
+  # Class Methods
+
+  def self.sum_total_ttc
+    if Facture.all.empty?
+      0
+    end
+    Facture.all.map {|f| f.sum_mt_ttc}.sum
   end
 
-  def m_unpaid
+  def self.sum_total_ht
+    if Facture.all.empty?
+      0
+    end
+    Facture.all.map {|f| f.sum_mt_ht}.sum
   end
 
-  def m_paid
+  def self.m_unpaid
+    cost = 0
+    Facture.all.each {|f| cost+=f.sum_mt_ttc if (f.status == "A payer")}
+    cost
+  end
+
+  def self.m_paid
+    cost = 0
+    Facture.all.each {|f| cost+=f.sum_mt_ttc if (f.status == "Payee")}
+    cost
   end
 
   private

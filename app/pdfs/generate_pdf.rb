@@ -64,12 +64,13 @@ class GeneratePdf < Prawn::Document
         stroke_horizontal_rule
         move_down 10
         text "Nombre de références : #{@facture.assignments.count}"
-        text "Total HT : #{@facture.assignments.count}"
-        text "Total TVA : #{@facture.assignments.count}"
-        text "Total TTC : #{@facture.assignments.count}"
+        text "Total HT : #{@facture.sum_mt_ht}"
+        rslt = @facture.sum_mt_ttc - @facture.sum_mt_ht
+        text "Total TVA : #{rslt}"
+        text "Total TTC : #{@facture.sum_mt_ttc}"
         move_down 15
         text "A régler avant le : #{(@facture.updated_at + 30.days).strftime("%d %b %Y")}"
-        text "Net à payer: ", size: 13, style: :bold
+        text "Net à payer: #{@facture.sum_mt_ttc}", size: 13, style: :bold
 
       end
   end

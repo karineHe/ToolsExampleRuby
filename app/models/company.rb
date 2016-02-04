@@ -3,11 +3,13 @@ class Company < ActiveRecord::Base
   has_many :contacts
   has_many :factures
 
+  validates_presence_of :name
+
   after_create :create_contact, :assign_contact
   after_update :create_contact, :assign_contact
 
   def create_contact
-    if self.c_fname || self.c_lname || self.c_email
+    if (!self.c_fname.blank? || !self.c_lname.blank? || !self.c_email.blank?)
       @contact = Contact.new
       @contact.lname = self.c_lname
       @contact.fname = self.c_fname
@@ -18,7 +20,7 @@ class Company < ActiveRecord::Base
   end
 
   def assign_contact
-    if !self.contact_id.empty?
+    if !self.contact_id.blank?
       contact = Contact.find(self.contact_id)
       contact.company = self
       contact.save

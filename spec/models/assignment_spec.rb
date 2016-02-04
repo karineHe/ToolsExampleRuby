@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 describe Assignment do
-  it "is valid with a ref_id and facture_id" do
+  it "is valid with a ref_id, facture_id and a qty" do
     f = Facture.create()
     ref = Ref.create(name: "TEST01")
     a = Assignment.new(
       ref_id: ref.id,
-      facture_id: f.id
+      facture_id: f.id,
+      qty: 1
     )
     a.valid?
     expect(a).to be_valid
