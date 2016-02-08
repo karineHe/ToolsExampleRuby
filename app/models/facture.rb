@@ -71,17 +71,20 @@ class Facture < ActiveRecord::Base
   # Class Methods
 
   def self.sum_total_ttc
-    if Facture.all.empty?
+    factures = Facture.all
+    if factures.empty?
       0
+    else
+      factures.map {|f| f.sum_mt_ttc}.sum
     end
-    Facture.all.map {|f| f.sum_mt_ttc}.sum
   end
 
   def self.sum_total_ht
-    if Facture.all.empty?
+    factures = Facture.all
+    if factures.empty?
       0
     end
-    Facture.all.map {|f| f.sum_mt_ht}.sum
+    factures.map {|f| f.sum_mt_ht}.sum
   end
 
   def self.m_unpaid
